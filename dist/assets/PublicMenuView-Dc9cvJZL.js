@@ -1,1 +1,0 @@
-import{b as e,s as t}from"./client-ImLkUJqR.js";import n from"./RestaurantMenu-DHfWjTSa.js";var r={__name:`PublicMenuView`,setup(r){return(r,i)=>(e(),t(n))}};export{r as default};

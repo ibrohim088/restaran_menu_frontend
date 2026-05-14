@@ -1,1 +1,0 @@
-var e=`http://localhost:8000`;function t(t){if(!t)return``;let n=t.toString().trim();if(!n)return``;if(/^(https?:\/\/|data:|blob:)/i.test(n))return n;let r=n.startsWith(`/`)?n:`/${n}`;return`${e.replace(/\/+$/,``)}${r}`}export{t};
