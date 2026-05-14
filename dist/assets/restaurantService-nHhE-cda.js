@@ -1,0 +1,1 @@
+import { t as e } from "./client-ImLkUJqR.js"; var t = () => e.get(`/restaurant`), n = t => e.get(`/restaurant/${t}`), r = t => e.post(`/restaurant`, t, { headers: { "Content-Type": `multipart/form-data` } }), i = (t, n) => e.put(`/restaurant/${t}`, n, { headers: { "Content-Type": `multipart/form-data` } }); export { i, n, t as r, r as t };

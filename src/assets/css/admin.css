@@ -1,0 +1,18 @@
+/* Admin Panel uchun qo‘shimcha stillar */
+.sidebar {
+  background: #f8fafc;
+}
+
+.nav-link.active {
+  background-color: var(--primary);
+  color: white !important;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
