@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
-        <UtensilsCrossed size="22" /> QR Menu - Admin
+        <UtensilsCrossed size="22" /> QR Menu - Super Admin Panel
       </a>
 
       <div class="d-flex align-items-center gap-3">
