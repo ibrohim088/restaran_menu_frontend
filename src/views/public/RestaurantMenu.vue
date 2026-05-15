@@ -2,7 +2,6 @@
   <div class="page">
     <PublicHeader />
 
-    <!-- Loading -->
     <div v-if="loading" class="state-screen">
       <div class="loader"></div>
       <p>Yuklanmoqda...</p>
@@ -133,16 +132,12 @@
   cursor: pointer;
 }
 
-/* ── HERO ── */
 .hero {
   position: relative;
   background: #111;
   margin: 10px 12px;
-  /* ← chetlardan bo'shliq */
   border-radius: 16px;
-  /* ← burchaklar */
   overflow: hidden;
-  /* ← ichidagilar chiqib ketmasin */
 }
 
 .hero-cover {
@@ -164,7 +159,6 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  /* border-radius: 0; */
 }
 
 .hero-logo {
@@ -224,7 +218,6 @@
   backdrop-filter: blur(4px);
 }
 
-/* ── Description ── */
 .desc-box {
   background: #fff;
   margin: 10px 12px;
@@ -257,7 +250,6 @@
   cursor: pointer;
 }
 
-/* ── Menu ── */
 .menu-section {
   padding: 0 12px;
 }
@@ -294,7 +286,6 @@
   gap: 8px;
 }
 
-/* ── Responsive ── */
 @media (max-width: 576px) {
   .hero {
     margin: 8px 8px;

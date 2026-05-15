@@ -1,13 +1,11 @@
 <template>
-  <BaseModal :visible="visible" :title="item?.name"  @close="emit('close')">
+  <BaseModal :visible="visible" :title="item?.name" @close="emit('close')">
     <div class="row g-4">
-      <!-- Rasm -->
       <div class="col-12 col-md-6">
         <img :src="normalizeMediaUrl(item?.imageUrl)" class="img-fluid rounded-3 shadow-sm w-100"
           style="max-height: 380px; object-fit: cover;" @error="handleImageError" />
       </div>
 
-      <!-- Ma'lumotlar -->
       <div class="col-12 col-md-6">
         <div class="d-flex justify-content-between align-items-start mb-3">
           <h4 class="mb-0">{{ item?.name }}</h4>
