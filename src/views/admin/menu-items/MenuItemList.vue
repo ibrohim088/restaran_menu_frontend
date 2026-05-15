@@ -14,7 +14,10 @@
       <Info size="18" /> Kategoriya tanlang
     </div>
 
-    <MenuItemTable :items="items" @edit="editItem" @delete="deleteItem" @toggle="toggleAvailability" />
+    <MenuItemTable :items="items" @edit="editItem" @delete="deleteItem" @toggle="toggleAvailability"
+      @detail="showDetail" />
+
+    <MenuItemDetailModal :visible="modalVisible" :item="selectedItem" @close="modalVisible = false" />
   </div>
 </template>
 
@@ -25,6 +28,7 @@ import { UtensilsCrossed, Plus, Info } from 'lucide-vue-next'
 import { useMenuItemStore } from '@/stores/menu'
 import apiClient from '@/api/client'
 import MenuItemTable from '@/components/admin/menu/MenuItemTable.vue'
+import MenuItemDetailModal from '@/components/public/MenuItemDetailModal.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -32,6 +36,8 @@ const menuStore = useMenuItemStore()
 
 const items = ref([])
 const currentCategoryId = ref(route.query.categoryId || '')
+const modalVisible = ref(false)
+const selectedItem = ref(null)
 
 onMounted(async () => {
   if (currentCategoryId.value) {
@@ -57,5 +63,10 @@ const toggleAvailability = async (id) => {
     await menuStore.fetchMenuItems(currentCategoryId.value)
     items.value = menuStore.items
   } catch (err) { alert("Xatolik yuz berdi") }
+}
+
+const showDetail = (item) => {
+  selectedItem.value = item
+  modalVisible.value = true
 }
 </script>

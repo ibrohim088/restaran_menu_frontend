@@ -47,6 +47,10 @@
               @click="$emit('delete', item._id)">
               <Trash2 size="14" />
             </button>
+            <button class="btn btn-primary flex-grow-1 btn-sm d-flex align-items-center justify-content-center gap-1"
+              @click="$emit('detail', item)">
+              <Utensils size="16" /> Batafsil
+            </button>
           </div>
         </td>
       </tr>
@@ -58,5 +62,5 @@
 import { Utensils, Flame, CheckCircle2, XCircle, Pencil, Trash2, ToggleLeft, ToggleRight } from 'lucide-vue-next'
 import { normalizeMediaUrl } from '@/utilities/image.js'
 defineProps({ items: Array })
-defineEmits(['edit', 'delete', 'toggle'])
+defineEmits(['edit', 'delete', 'toggle', 'detail'])
 </script>

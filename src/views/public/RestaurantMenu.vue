@@ -45,9 +45,11 @@
 
         <div class="row g-3">
           <div class="col-12 col-md-6 col-lg-4" v-for="item in category.items" :key="item._id">
-            <MenuItemCard :item="item" />
+            <MenuItemCard :item="item" @detail="openDetail" />
           </div>
         </div>
+
+        <MenuItemDetailModal :visible="showDetailModal" :item="selectedItem" @close="showDetailModal = false" />
       </div>
     </div>
 
@@ -60,6 +62,7 @@
 </template>
 
 <script setup>
+import MenuItemDetailModal from '@/components/public/MenuItemDetailModal.vue'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getPublicMenu } from '@/api/services/publicService'
@@ -76,6 +79,8 @@ const restaurant = ref(null)
 const menu = ref([])
 const popularItems = ref([])
 const showLogo = ref(true)
+const selectedItem = ref(null)
+const showDetailModal = ref(false)
 
 const restaurantLogo = computed(() => {
   return normalizeMediaUrl(restaurant.value?.logoUrl || restaurant.value?.logo || restaurant.value?.image || restaurant.value?.photo || '')
@@ -84,6 +89,11 @@ const restaurantLogo = computed(() => {
 const restaurantCover = computed(() => {
   return normalizeMediaUrl(restaurant.value?.coverUrl || restaurant.value?.cover || restaurant.value?.background || '')
 })
+
+const openDetail = (item) => {
+  selectedItem.value = item
+  showDetailModal.value = true
+}
 
 onMounted(async () => {
   const { id, restaurantId } = route.params

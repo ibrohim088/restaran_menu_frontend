@@ -44,6 +44,11 @@
               @click="addMenuItemToCategory(category._id)">
               <Plus size="16" /> Taom qo‘shish
             </button>
+            <button
+              class="btn btn-outline-primary flex-grow-1 btn-sm d-flex align-items-center justify-content-center gap-1"
+              @click="goToMenuItems(category._id)">
+              <UtensilsCrossed size="16" /> Taomlar
+            </button>
           </div>
         </td>
       </tr>
