@@ -40,6 +40,10 @@
               @click="$emit('delete', category._id)">
               <Trash2 size="14" />
             </button>
+            <button class="btn btn-primary flex-grow-1 btn-sm d-flex align-items-center justify-content-center gap-1"
+              @click="addMenuItemToCategory(category._id)">
+              <Plus size="16" /> Taom qo‘shish
+            </button>
           </div>
         </td>
       </tr>
@@ -50,6 +54,18 @@
 <script setup>
 import { Folder, Pencil, Trash2, ToggleLeft } from 'lucide-vue-next'
 import { normalizeMediaUrl } from '@/utilities/image.js'
+import { Plus, UtensilsCrossed } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 defineProps({ categories: Array })
 defineEmits(['edit', 'delete', 'toggle'])
+
+const goToMenuItems = (categoryId) => {
+  router.push(`/admin/menu-items?categoryId=${categoryId}`)
+}
+
+const addMenuItemToCategory = (categoryId) => {
+  router.push(`/admin/menu-items/new?categoryId=${categoryId}`)
+}
 </script>
