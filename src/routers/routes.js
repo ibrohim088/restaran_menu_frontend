@@ -2,11 +2,6 @@
 const routes = [
   // ===================== PUBLIC ROUTES =====================
   {
-    path: '/',
-    name: 'PublicHome',
-    component: () => import('../views/public/PublicHome.vue') //import('@/views/public/PublicHome.vue')
-  },
-  {
     path: '/restaurant/:id',
     name: 'RestaurantMenu',
     component: () => import('../views/public/RestaurantMenu.vue')
