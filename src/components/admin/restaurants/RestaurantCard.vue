@@ -1,30 +1,21 @@
 <template>
-  <div class="card h-100 shadow-sm restaurant-card border-0 overflow-hidden"
-       @click="emit('click')">
+  <div class="card h-100 shadow-sm restaurant-card border-0 overflow-hidden" @click="emit('click')">
 
     <!-- Rasm qismi - To'liqroq ko'rinish -->
     <div class="position-relative">
-      <img 
-        v-if="showLogo && logoUrl" 
-        :src="logoUrl" 
-        class="card-img-top restaurant-img"
-        style="height: 400px; object-fit: cover;"
-        @error="handleImageError"
-      >
+      <img v-if="showLogo && logoUrl" :src="logoUrl" class="card-img-top restaurant-img"
+        style="height: 400px; object-fit: cover;" @error="handleImageError">
 
       <!-- Placeholder -->
-      <div v-else class="card-img-top bg-light d-flex align-items-center justify-content-center" 
-           style="height: 220px;">
+      <div v-else class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
         <UtensilsCrossed size="52" class="text-muted" />
       </div>
 
       <!-- Status badge -->
-      <span v-if="restaurant.isActive !== false" 
-            class="badge bg-success position-absolute top-3 end-3 shadow-sm">
+      <span v-if="restaurant.isActive !== false" class="badge bg-success position-absolute top-3 end-3 shadow-sm">
         Faol
       </span>
-      <span v-else 
-            class="badge bg-secondary position-absolute top-3 end-3 shadow-sm">
+      <span v-else class="badge bg-secondary position-absolute top-3 end-3 shadow-sm">
         Faolsiz
       </span>
     </div>
@@ -38,25 +29,29 @@
       </p>
 
       <!-- QR Kod tugmasi -->
-      <router-link 
-        :to="`/admin/restaurants/${restaurant._id}/qr`"
-        class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center gap-2 mb-3"
-        @click.stop>
-        <QrCode size="16" /> 
-        QR Kodni Ko‘rish
-      </router-link>
+      <div class="d-flex gap-2 mb-3">
+        <router-link :to="`/admin/restaurants/${restaurant._id}/qr`"
+          class="btn btn-outline-primary btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-2"
+          @click.stop>
+          <QrCode size="16" /> QR Ko'rish
+        </router-link>
+        <router-link :to="`/admin/categories?restaurantId=${restaurant._id}`"
+          class="btn btn-outline-success btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-2"
+          @click.stop>
+          <Tags size="16" /> Kategoriyalar
+        </router-link>
+      </div>
 
       <!-- Pastki tugmalar -->
       <div class="mt-auto d-flex gap-2">
-        <button 
+        <button
           class="btn btn-outline-secondary btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-2"
           @click.stop="emit('edit', restaurant._id)">
-          <Pencil size="15" /> 
+          <Pencil size="15" />
           Tahrirlash
         </button>
-        
-        <button 
-          class="btn btn-outline-danger btn-sm d-flex align-items-center justify-content-center gap-2 px-3"
+
+        <button class="btn btn-outline-danger btn-sm d-flex align-items-center justify-content-center gap-2 px-3"
           @click.stop="emit('delete', restaurant._id)">
           <Trash2 size="15" />
         </button>
