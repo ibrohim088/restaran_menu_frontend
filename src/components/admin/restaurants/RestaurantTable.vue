@@ -1,6 +1,6 @@
 <template>
-  <div class="restaurant-table">
-    <table class="table table-striped table-hover">
+  <div class="restaurant-table" style="overflow-x:auto;">
+    <table class="table table-striped table-hover align-middle">
       <thead class="table-dark">
         <tr>
           <th>Nomi</th>
@@ -12,25 +12,37 @@
       </thead>
       <tbody>
         <tr v-for="restaurant in restaurants" :key="restaurant._id">
-          <td>{{ restaurant.name }}</td>
-          <td>{{ restaurant.address }}</td>
-          <td>{{ restaurant.phone }}</td>
+          <td class="fw-semibold">{{ restaurant.name }}</td>
           <td>
-            <span :class="restaurant.isActive ? 'badge bg-success' : 'badge bg-secondary'">
+            <span class="d-flex align-items-center gap-1 text-muted small">
+              <MapPin size="14" /> {{ restaurant.address }}
+            </span>
+          </td>
+          <td>
+            <span class="d-flex align-items-center gap-1 small">
+              <Phone size="14" /> {{ restaurant.phone || '—' }}
+            </span>
+          </td>
+          <td>
+            <span :class="restaurant.isActive ? 'badge bg-success' : 'badge bg-secondary'"
+              class="d-inline-flex align-items-center gap-1">
+              <component :is="restaurant.isActive ? CheckCircle2 : XCircle" size="12" />
               {{ restaurant.isActive ? 'Faol' : 'Faol emas' }}
             </span>
           </td>
           <td>
-            <div class="btn-group" role="group">
-              <button @click="editRestaurant(restaurant._id)" class="btn btn-sm btn-outline-primary" title="Tahrirlash">
-                ✏️
+            <div class="d-flex gap-1">
+              <button @click="emit('edit', restaurant._id)"
+                class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1" title="Tahrirlash">
+                <Pencil size="14" />
               </button>
-              <button @click="confirmDelete(restaurant._id)" class="btn btn-sm btn-outline-danger" title="O'chirish">
-                🗑️
+              <button @click="emit('delete', restaurant._id)"
+                class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1" title="O'chirish">
+                <Trash2 size="14" />
               </button>
-              <router-link :to="`/admin/restaurants/${restaurant._id}/qr`" class="btn btn-sm btn-outline-info"
-                title="QR Kod">
-                📱
+              <router-link :to="`/admin/restaurants/${restaurant._id}/qr`"
+                class="btn btn-sm btn-outline-info d-flex align-items-center gap-1" title="QR Kod">
+                <QrCode size="14" />
               </router-link>
             </div>
           </td>
@@ -41,32 +53,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
-
-const props = defineProps({
-  restaurants: {
-    type: Array,
-    default: () => []
-  }
-})
-
+import { MapPin, Phone, CheckCircle2, XCircle, Pencil, Trash2, QrCode } from 'lucide-vue-next'
+const props = defineProps({ restaurants: { type: Array, default: () => [] } })
 const emit = defineEmits(['edit', 'delete'])
-
-const editRestaurant = (id) => {
-  emit('edit', id)
-}
-
-const confirmDelete = (id) => {
-  emit('delete', id)
-}
 </script>
-
-<style scoped>
-.restaurant-table {
-  overflow-x: auto;
-}
-
-.btn-group .btn {
-  margin-right: 2px;
-}
-</style>

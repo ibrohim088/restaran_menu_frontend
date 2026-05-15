@@ -14,11 +14,11 @@
     </div>
 
     <div class="card-footer d-flex gap-2">
-      <button @click.stop="editCategory(category._id)" class="btn btn-sm btn-outline-primary flex-grow-1">
-        ✏️ Tahrirlash
+      <button @click.stop="editCategory(category._id)" class="btn btn-sm btn-outline-primary flex-grow-1 d-flex align-items-center justify-content-center gap-1">
+        <Pencil size="14" /> Tahrirlash
       </button>
-      <button @click.stop="confirmDelete(category._id)" class="btn btn-sm btn-outline-danger">
-        🗑️
+      <button @click.stop="confirmDelete(category._id)" class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center">
+        <Trash2 size="14" />
       </button>
     </div>
   </div>
@@ -26,45 +26,19 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { Folder } from 'lucide-vue-next'
+import { Folder, Pencil, Trash2 } from 'lucide-vue-next'
 import { normalizeMediaUrl } from '@/utilities/image.js'
 
-const props = defineProps({
-  category: {
-    type: Object,
-    required: true
-  }
-})
-
+const props = defineProps({ category: { type: Object, required: true } })
 const emit = defineEmits(['click', 'edit', 'delete'])
-
 const showImage = ref(true)
-
-const imageUrl = computed(() => {
-  return normalizeMediaUrl(props.category.imageUrl || props.category.image || props.category.photo || '')
-})
-
-const onImageError = () => {
-  showImage.value = false
-}
-
-const editCategory = (id) => {
-  emit('edit', id)
-}
-
-const confirmDelete = (id) => {
-  emit('delete', id)
-}
+const imageUrl = computed(() => normalizeMediaUrl(props.category.imageUrl || props.category.image || ''))
+const onImageError = () => { showImage.value = false }
+const editCategory = (id) => emit('edit', id)
+const confirmDelete = (id) => emit('delete', id)
 </script>
 
 <style scoped>
-.category-card {
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
+.category-card { transition: all 0.2s ease; cursor: pointer; }
+.category-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.12); }
 </style>

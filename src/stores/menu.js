@@ -20,8 +20,9 @@ export const useMenuItemStore = defineStore('menuItem', () => {
     }
   }
 
-  const createMenuItem = async (formData) => {
-    const res = await apiClient.post('/menu', formData, {
+  // TUZATILDI: categoryId alohida parametr sifatida
+  const createMenuItem = async (categoryId, formData) => {
+    const res = await apiClient.post(`/menu/categories/${categoryId}`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
     items.value.unshift(res.data.data)

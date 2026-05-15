@@ -46,6 +46,12 @@ const routes = [
         component: () => import('../views/admin/restaurants/RestaurantForm.vue')
       },
       {
+        // TUZATILDI: edit route qo'shildi
+        path: 'restaurants/edit/:id',
+        name: 'AdminRestaurantEdit',
+        component: () => import('../views/admin/restaurants/RestaurantForm.vue')
+      },
+      {
         path: 'restaurants/:id/qr',
         name: 'AdminRestaurantQR',
         component: () => import('../views/admin/restaurants/RestaurantQRView.vue')
