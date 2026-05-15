@@ -37,11 +37,6 @@
           <Flame size="20" class="text-warning" />
           <strong>Mashhur taom!</strong>
         </div>
-
-        <button class="btn btn-primary w-100 py-3" @click="addToOrder">
-          <ShoppingCart size="18" class="me-2" />
-          Buyurtma berish
-        </button>
       </div>
     </div>
   </BaseModal>
@@ -62,11 +57,5 @@ const emit = defineEmits(['close'])
 
 const handleImageError = (e) => {
   e.target.src = '/placeholder-food.jpg' // yoki boshqa default rasm
-}
-
-const addToOrder = () => {
-  // Kelajakda savat funksiyasiga qo'shish
-  alert(`${props.item.name} buyurtmaga qo'shildi! (Keyinchalik to'liq savat tizimi qo'shiladi)`)
-  emit('close')
 }
 </script>
